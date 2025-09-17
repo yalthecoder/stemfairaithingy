@@ -126,7 +126,8 @@ for(let i = 0; i<1000; i++) {
     
     
 }
-
+//alert(["apple"].includes("apple"))
+//alert(neurons[2].con.includes(neurons[3]))
 function trainNeurons() {
     for(const neuron of neurons) {
         for(const key in neuron) {
@@ -137,23 +138,30 @@ function trainNeurons() {
                     //alert(key);
                     if(neuron[key] == neuron.con) {
                         //alert(neuron[key]); 
-                        /*
+                        
                         for(const neuron2 in neurons) {
+                            //alert("1");
                             if(neuron2 != neuron) {
-                                if(Math.random()<0.001) {
+                                //alert("2");
+                                if(Math.random()<0.0001) {
+                                    //alert("3");
                                     if(neuron.con.includes(neuron2)) {
-                                        const index = neuron.con.findIndex(item => item === neuron2);
-                                        if (index !== -1) {
-                                            myArray.splice(index, 1);
-                                        }
+                                        //alert("4")
+                                        //alert(neuron.con);
+                                        neuron.con = neuron.con.filter(item => item !== neuron2);
+                                        //alert(neuron.con);
                                     }
                                     else {
+                                        
+                                        //alert(neuron.con.length);
                                         neuron.con.push(neuron2);
+                                        //alert(neuron.con.length);
                                     }
+                                    
                                 }
                             }
                         }
-                            */
+                            
                     }
                     if(neuron[key] == neuron.min) {
                         neuron.min += Math.random()*50-25;
