@@ -180,6 +180,7 @@ function trainNeurons() {
 }
 
 var timer = 0;
+var goaltimer = 0;
 function tick() {
     ctx.fillStyle = "#222255";
     ctx.fillRect(0, 0, canvas.width, canvas.height);
@@ -213,22 +214,22 @@ function tick() {
         if(neuron.type == "outup") {
             //alert("1")
             if(neuron.value>neuron.min && neuron.value<neuron.max) {
-                player.y -= 1;
+                player.y -= 2;
             }
         }
         if(neuron.type == "outdown") {
             if(neuron.value>neuron.min && neuron.value<neuron.max) {
-                player.y += 1;
+                player.y += 2;
             }
         }
         if(neuron.type == "outleft") {
             if(neuron.value>neuron.min && neuron.value<neuron.max) {
-                player.x -= 1;
+                player.x -= 2;
             }
         }
         if(neuron.type == "outright") {
             if(neuron.value>neuron.min && neuron.value<neuron.max) {
-                player.x += 1;
+                player.x += 2;
             }
         }
         neuron.value = 0;
@@ -247,13 +248,18 @@ function tick() {
     }
     //alert("yal")
     timer++;
-    if(timer>120) {
+    if(timer>50) {
         var dist = Math.sqrt((player.x-goal.x)**2+(player.y-goal.y)**2);
         reward = 1/(dist+1);
         player.x = canvas.width/2;
         player.y = canvas.height/2;
-        goal.x = Math.random()*canvas.width;
-        goal.y = Math.random()*canvas.height;
+        goaltimer++;
+        if(goaltimer>100) {
+            goal.x = Math.random()*canvas.width;
+            goal.y = Math.random()*canvas.height;
+            goaltimer = 0;
+        }
+
         trainNeurons();
         timer = 0;
     }
