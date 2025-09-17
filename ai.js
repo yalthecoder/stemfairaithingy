@@ -19,7 +19,7 @@ const goal = {
 var reward = 0;
 const neurons = [];
 
-for(let i = 0; i<1000; i++) {
+for(let i = 0; i<2000; i++) {
     
     if(i<4) {
         
@@ -64,9 +64,9 @@ for(let i = 0; i<1000; i++) {
         
     }
     
-    else if (i>995) {
+    else if (i>1995) {
         
-        if(i == 996) {
+        if(i == 1996) {
             
             const neutron = {
                 value: 0,
@@ -78,7 +78,7 @@ for(let i = 0; i<1000; i++) {
             }
             neurons.push(neutron);
         }
-        else if(i == 997) {
+        else if(i == 1997) {
             const neutron = {
                 value: 0,
                 mod: Math.random()*2-1,
@@ -89,7 +89,7 @@ for(let i = 0; i<1000; i++) {
             }
             neurons.push(neutron);
         }
-        else if(i == 998) {
+        else if(i == 1998) {
             const neutron = {
                 value: 0,
                 mod: Math.random()*2-1,
@@ -248,7 +248,7 @@ function tick() {
     }
     //alert("yal")
     timer++;
-    if(timer>50) {
+    if(timer>60) {
         var dist = Math.sqrt((player.x-goal.x)**2+(player.y-goal.y)**2);
         reward = 1/(dist+1);
         player.x = canvas.width/2;
@@ -259,8 +259,9 @@ function tick() {
             goal.y = Math.random()*canvas.height;
             goaltimer = 0;
         }
-
-        trainNeurons();
+        if(dist>10) {
+            trainNeurons();
+        }
         timer = 0;
     }
 }
