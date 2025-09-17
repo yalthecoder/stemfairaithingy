@@ -19,7 +19,7 @@ const goal = {
 var reward = 0;
 const neurons = [];
 
-for(let i = 0; i<2000; i++) {
+for(let i = 0; i<1000; i++) {
     
     if(i<4) {
         
@@ -64,9 +64,9 @@ for(let i = 0; i<2000; i++) {
         
     }
     
-    else if (i>1995) {
+    else if (i>995) {
         
-        if(i == 1996) {
+        if(i == 996) {
             
             const neutron = {
                 value: 0,
@@ -78,7 +78,7 @@ for(let i = 0; i<2000; i++) {
             }
             neurons.push(neutron);
         }
-        else if(i == 1997) {
+        else if(i == 997) {
             const neutron = {
                 value: 0,
                 mod: Math.random()*2-1,
@@ -89,7 +89,7 @@ for(let i = 0; i<2000; i++) {
             }
             neurons.push(neutron);
         }
-        else if(i == 1998) {
+        else if(i == 998) {
             const neutron = {
                 value: 0,
                 mod: Math.random()*2-1,
