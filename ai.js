@@ -224,6 +224,18 @@ function tick() {
             }
         }
         neuron.value = 0;
+        if(neuron.max>1000) {
+            neuron.max = 1000;
+        }
+        if(neuron.min<-1000) {
+            neuron.min = -1000;
+        }
+        if(neuron.min>1000) {
+            neuron.min = 1000;
+        }
+        if(neuron.max<-1000) {
+            neuron.max = -1000;
+        }
     }
     //alert("yal")
     timer++;
