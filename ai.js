@@ -158,12 +158,12 @@ function trainNeurons() {
                     if(neuron[key] == neuron.min) {
                         neuron.min += Math.random()*50-25;
                         //alert("crazy")
-                        alert(neuron.min);
+                        //alert(neuron.min);
                     }
                     if(neuron[key] == neuron.max) {
                         neuron.max += Math.random()*50-25;
                         //alert("crazy")
-                        alert(neuron.max)
+                        //alert(neuron.max)
                     }
                 }
             }
