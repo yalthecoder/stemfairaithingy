@@ -26,38 +26,42 @@ for(let i = 0; i<1000; i++) {
         if(i == 0) {
             const neutron = {
                 value: 0,
-                mod: Math.random()*2-1,
+                mod: Math.random()*4-2,
                 type: "inputpx",
                 con: [],
             }
+            //alert(neutron.mod);
             neurons.push(neutron);
             
         }
         if(i == 1) {
             const neutron = {
                 value: 0,
-                mod: Math.random()*2-1,
+                mod: Math.random()*4-2,
                 type: "inputpy",
                 con: [],
             }
+            //alert(neutron.mod);
             neurons.push(neutron);
         }
         if(i == 2) {
             const neutron = {
                 value: 0,
-                mod: Math.random()*2-1,
+                mod: Math.random()*4-2,
                 type: "inputgx",
                 con: [],
             }
+            //alert(neutron.mod);
             neurons.push(neutron);
         }
         if(i == 3) {
             const neutron = {
                 value: 0,
-                mod: Math.random()*2-1,
+                mod: Math.random()*4-2,
                 type: "inputgy",
                 con: [],
             }
+            //alert(neutron.mod);
             neurons.push(neutron);
             
         }
@@ -70,45 +74,49 @@ for(let i = 0; i<1000; i++) {
             
             const neutron = {
                 value: 0,
-                mod: Math.random()*2-1,
+                mod: Math.random()*4-2,
                 type: "outup",
                 con: [],
-                min: Math.random()*1000-500,
-                max: Math.random()*1000-500,
+                min: Math.random()*200-100,
+                max: Math.random()*200-100,
             }
+            //alert(neutron.mod);
             neurons.push(neutron);
         }
         else if(i == 997) {
             const neutron = {
                 value: 0,
-                mod: Math.random()*2-1,
+                mod: Math.random()*4-2,
                 type: "outdown",
                 con: [],
-                min: Math.random()*1000-500,
-                max: Math.random()*1000-500,
+                min: Math.random()*200-100,
+                max: Math.random()*200-100,
             }
+            //alert(neutron.mod);
             neurons.push(neutron);
         }
         else if(i == 998) {
             const neutron = {
                 value: 0,
-                mod: Math.random()*2-1,
+                mod: Math.random()*4-2,
                 type: "outleft",
                 con: [],
-                min: Math.random()*1000-500,
-                max: Math.random()*1000-500,
+                min: Math.random()*200-100,
+                max: Math.random()*200-100,
             }
+            //alert(neutron.mod);
             neurons.push(neutron);
         }
         else {
             const neutron = {
                 value: 0,
-                mod: Math.random()*2-1,
+                mod: Math.random()*4-2,
                 type: "outright",
                 con: [],
-                min: Math.random()*1000-500,
-                max: Math.random()*1000-500,
+                min: Math.random()*200-100,
+                max: Math.random()*200-100,
             }
+            //alert(neutron.mod);
             neurons.push(neutron);
         }
     }
@@ -116,22 +124,35 @@ for(let i = 0; i<1000; i++) {
         
         const neutron = {
             value: 0,
-            mod: Math.random()*2-1,
+            mod: Math.random()*4-2,
             type: "hidden",
             con: [],
         }
+        //alert(neutron.mod);
         neurons.push(neutron);
     }
     
     
     
 }
+for(const neuron of neurons) {
+    //alert(neuron.mod)
+    for(const pconnection of neurons) {
+        //alert(neuron.mod)
+        //alert(pconnection.mod)
+        if(neuron.mod != pconnection.mod && Math.random()<0.01 && !neuron.con.includes(pconnection)) {
+            //alert("3")
+            neuron.con.push(pconnection);   
+        }
+    }
+}
 //alert(["apple"].includes("apple"))
 //alert(neurons[2].con.includes(neurons[3]))
 function trainNeurons() {
     for(const neuron of neurons) {
+        //alert("1")  
         for(const key in neuron) {
-            
+            //alert("2")
             if(neuron.hasOwnProperty(key)) {
                 
                 if(Math.random()>reward/100) {
@@ -139,11 +160,11 @@ function trainNeurons() {
                     if(neuron[key] == neuron.con) {
                         //alert(neuron[key]); 
                         
-                        for(const neuron2 in neurons) {
+                        for(const neuron2 of neurons) {
                             //alert("1");
                             if(neuron2 != neuron) {
                                 //alert("2");
-                                if(Math.random()<0.0001) {
+                                if(Math.random()<0.1) {
                                     //alert("3");
                                     if(neuron.con.includes(neuron2)) {
                                         //alert("4")
@@ -151,7 +172,7 @@ function trainNeurons() {
                                         neuron.con = neuron.con.filter(item => item !== neuron2);
                                         //alert(neuron.con);
                                     }
-                                    else {
+                                    else if(Math.random()<0.0001) {
                                         
                                         //alert(neuron.con.length);
                                         neuron.con.push(neuron2);
@@ -163,6 +184,7 @@ function trainNeurons() {
                         }
                             
                     }
+                    /*
                     if(neuron[key] == neuron.min) {
                         neuron.min += Math.random()*50-25;
                         //alert("crazy")
@@ -173,6 +195,7 @@ function trainNeurons() {
                         //alert("crazy")
                         //alert(neuron.max)
                     }
+                    */
                 }
             }
         }
@@ -205,6 +228,7 @@ function tick() {
             }
             for(const connection of neuron.con) {
                 connection.value += neuron.value*neuron.mod;
+                //alert(neurons[connection].value);
             }
         }
     }
@@ -212,6 +236,9 @@ function tick() {
     for(const neuron of neurons) {
         
         if(neuron.type == "outup") {
+            if(neuron.value != 0) {
+            //alert(neuron.value);
+            }
             //alert("1")
             if(neuron.value>neuron.min && neuron.value<neuron.max) {
                 player.y -= 2;
