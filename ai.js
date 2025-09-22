@@ -184,7 +184,7 @@ function trainNeurons() {
                         }
                             
                     }
-                    /*
+                    if(neuron.min>neuron.max+10) {
                     if(neuron[key] == neuron.min) {
                         neuron.min += Math.random()*50-25;
                         //alert("crazy")
@@ -195,7 +195,7 @@ function trainNeurons() {
                         //alert("crazy")
                         //alert(neuron.max)
                     }
-                    */
+                }
                 }
             }
         }
@@ -228,17 +228,17 @@ function tick() {
             }
             for(const connection of neuron.con) {
                 connection.value += neuron.value*neuron.mod;
-                //alert(neurons[connection].value);
+                //alert(connection.value);
             }
         }
     }
     //alert("ya")
     for(const neuron of neurons) {
-        
-        if(neuron.type == "outup") {
-            if(neuron.value != 0) {
+        if(neuron.value != 0) {
             //alert(neuron.value);
-            }
+        }
+        if(neuron.type == "outup") {
+            
             //alert("1")
             if(neuron.value>neuron.min && neuron.value<neuron.max) {
                 player.y -= 2;
